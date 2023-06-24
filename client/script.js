@@ -1,5 +1,5 @@
-import bot from './assets/bot.svg';
-import user from './assets/user.png'
+import bot from './assets/bot';
+import user from './assets/user';
 
 const form = document.querySelector('form')
 const chatContainer = document.querySelector('#chat_container')
@@ -84,7 +84,7 @@ const handleSubmit = async (e) => {
   // messageDiv.innerHTML = "..."
   loader(messageDiv)
 
-  const response = await fetch('http://localhost:5000', {
+  const response = await fetch('https://expensive-slug-apron.cyclic.app/', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
