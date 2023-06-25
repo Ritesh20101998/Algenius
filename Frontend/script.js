@@ -1,5 +1,5 @@
-import bot from './assets/bot';
-import user from './assets/user';
+import bot from './assets/bot.svg';
+import user from './assets/user.svg';
 
 const form = document.querySelector('form')
 const chatContainer = document.querySelector('#chat_container')
@@ -8,14 +8,14 @@ const chatContainer = document.querySelector('#chat_container')
 let loadInterval;
 
 function loader(element) {
-    element.textContent = ''
+    element.textContent = '';
 
     loadInterval = setInterval(() => {
         // Update the text content of the loading indicator
         element.textContent += '.';
 
         // If the loading indicator has reached three dots, reset it
-        if (element.textContent === '....') {
+        if (element.textContext === '....') {
             element.textContent = '';
         }
     }, 300);
@@ -84,6 +84,8 @@ const handleSubmit = async (e) => {
   // messageDiv.innerHTML = "..."
   loader(messageDiv)
 
+//https://expensive-slug-apron.cyclic.app/
+
   const response = await fetch('https://expensive-slug-apron.cyclic.app/', {
       method: 'POST',
       headers: {
@@ -95,7 +97,7 @@ const handleSubmit = async (e) => {
   })
 
   clearInterval(loadInterval)
-  messageDiv.innerHTML = " ";
+  messageDiv.innerHTML = "";
 
   if (response.ok) {
       const data = await response.json();
@@ -103,7 +105,7 @@ const handleSubmit = async (e) => {
 
     console.log({parsedData})
 
-      typeText(messageDiv, parsedData)
+    typeText(messageDiv, parsedData)
   } else {
       const err = await response.text()
 

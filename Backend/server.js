@@ -21,9 +21,10 @@ app.get('/', async(req, res) => {
     res.status(200).send({message:"codex from Rk"})
 })
 
-app.post('/', async(req, res) => {
+app.post('/chat', async(req, res) => {
+    console.log(req.body)
     try{    
-        const prompt = req.body;
+        const prompt = req.body.prompt;
 
         console.log(prompt);
 
@@ -31,18 +32,20 @@ app.post('/', async(req, res) => {
             model: "text-davinci-003",
             prompt: `${prompt}`,
             temperature: 0,
-            max_tokens: 256,
+            max_tokens: 300,
             top_p: 1,
             frequency_penalty: 0.5,
             presence_penalty: 0,
         })
 
+        // console.log(response)
+
         res.status(200).send({
             bot:response.data.choices[0].text
         })
     } catch(error){
-        console.log(error)
-        res.status(500).send(error || 'something wrong')
+        // console.log(error)
+        res.status(500).send('something wrong')
     }
 })
 
